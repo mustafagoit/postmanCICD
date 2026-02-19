@@ -41,8 +41,8 @@ jobs:
 
       # Newman'i global olarak kurar
       # -g = global, her yerden cagrilabilir hale getirir
-      - name: Newman kur
-        run: npm install -g newman
+      - name: Newman ve reporter kur
+        run: npm install -g newman newman-reporter-htmlextra
 
       # Postman collection'ini Newman ile calistirir
       # Dosya adi Postman'den export ettigin JSON ile BIREBIR ayni olmali
