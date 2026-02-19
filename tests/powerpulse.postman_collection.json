@@ -178,7 +178,7 @@
           },
           {
             "key": "Authorization",
-            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YjlkNWU5NjNlMmRjYmY1MzJlOGIyMSIsImlhdCI6MTc3MTQ5NTgwMiwiZXhwIjoxNzcxNDk5NDAyfQ.VtOc35j9PX6KyaKEgRQ0wy_V58wW-MjV4P7e4QWnEM4"
+            "value": "{{token}}"
           },
           {
             "key": "Connection",
