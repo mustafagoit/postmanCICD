@@ -1,0 +1,252 @@
+{
+  "info": {
+    "_postman_id": "1d380767-0462-4586-bd6c-b530eaccdf24",
+    "name": "powerpulse",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "46901896",
+    "_collection_link": "https://go.postman.co/collection/46901896-1d380767-0462-4586-bd6c-b530eaccdf24?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "Accept-Language",
+            "value": "en-US,en;q=0.9"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer"
+          },
+          {
+            "key": "Connection",
+            "value": "keep-alive"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Origin",
+            "value": "https://power-pulse-qa.f.goit.study"
+          },
+          {
+            "key": "Referer",
+            "value": "https://power-pulse-qa.f.goit.study/"
+          },
+          {
+            "key": "Sec-Fetch-Dest",
+            "value": "empty"
+          },
+          {
+            "key": "Sec-Fetch-Mode",
+            "value": "cors"
+          },
+          {
+            "key": "Sec-Fetch-Site",
+            "value": "same-site"
+          },
+          {
+            "key": "User-Agent",
+            "value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+          },
+          {
+            "key": "sec-ch-ua",
+            "value": "\"Not:A-Brand\";v=\"99\", \"Google Chrome\";v=\"145\", \"Chromium\";v=\"145\""
+          },
+          {
+            "key": "sec-ch-ua-mobile",
+            "value": "?0"
+          },
+          {
+            "key": "sec-ch-ua-platform",
+            "value": "\"Linux\""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"test1234@test.com\",\n    \"password\": \"Q123456.\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://power-pulse-qa.b.goit.study/api/users/login",
+          "protocol": "https",
+          "host": [
+            "power-pulse-qa",
+            "b",
+            "goit",
+            "study"
+          ],
+          "path": [
+            "api",
+            "users",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getDiary",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response matches JSON schema (products[] & exercises[])\", function () {",
+              "  pm.response.to.be.withBody;",
+              "  pm.response.to.be.json;",
+              "",
+              "  const schema = {",
+              "    type: \"object\",",
+              "    required: [\"products\", \"exercises\"],",
+              "    additionalProperties: true,",
+              "    properties: {",
+              "      products: {",
+              "        type: \"array\",",
+              "        items: {",
+              "          type: \"object\",",
+              "          required: [\"_id\", \"amount\", \"calories\", \"category\", \"title\", \"recommended\"],",
+              "          additionalProperties: true,",
+              "          properties: {",
+              "            _id: { type: \"string\" },",
+              "            amount: { type: \"number\" },",
+              "            calories: { type: \"number\" },",
+              "            category: { type: \"string\" },",
+              "            title: { type: \"string\" },",
+              "            recommended: { type: \"boolean\" }",
+              "          }",
+              "        }",
+              "      },",
+              "      exercises: {",
+              "        type: \"array\",",
+              "        items: { type: \"object\" }",
+              "      }",
+              "    }",
+              "  };",
+              "",
+              "  pm.response.to.have.jsonSchema(schema);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "Accept-Language",
+            "value": "en-US,en;q=0.9"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YjlkNWU5NjNlMmRjYmY1MzJlOGIyMSIsImlhdCI6MTc3MTQ5NTgwMiwiZXhwIjoxNzcxNDk5NDAyfQ.VtOc35j9PX6KyaKEgRQ0wy_V58wW-MjV4P7e4QWnEM4"
+          },
+          {
+            "key": "Connection",
+            "value": "keep-alive"
+          },
+          {
+            "key": "If-None-Match",
+            "value": "W/\"110-EioCH6VDymgeCe0uS3tQ2x+lHno\""
+          },
+          {
+            "key": "Origin",
+            "value": "https://power-pulse-qa.f.goit.study"
+          },
+          {
+            "key": "Referer",
+            "value": "https://power-pulse-qa.f.goit.study/"
+          },
+          {
+            "key": "Sec-Fetch-Dest",
+            "value": "empty"
+          },
+          {
+            "key": "Sec-Fetch-Mode",
+            "value": "cors"
+          },
+          {
+            "key": "Sec-Fetch-Site",
+            "value": "same-site"
+          },
+          {
+            "key": "User-Agent",
+            "value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+          },
+          {
+            "key": "sec-ch-ua",
+            "value": "\"Not:A-Brand\";v=\"99\", \"Google Chrome\";v=\"145\", \"Chromium\";v=\"145\""
+          },
+          {
+            "key": "sec-ch-ua-mobile",
+            "value": "?0"
+          },
+          {
+            "key": "sec-ch-ua-platform",
+            "value": "\"Linux\""
+          }
+        ],
+        "url": {
+          "raw": "https://power-pulse-qa.b.goit.study/api/diary?date=2026-02-19",
+          "protocol": "https",
+          "host": [
+            "power-pulse-qa",
+            "b",
+            "goit",
+            "study"
+          ],
+          "path": [
+            "api",
+            "diary"
+          ],
+          "query": [
+            {
+              "key": "date",
+              "value": "2026-02-19"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+# Workflow'un GitHub Actions arayuzunde gorunecek adi
+name: API Testleri
+
+# Bu workflow'u ne zaman tetikleyecegini belirtir
+on:
+
+  # main branch'e her push yapildiginda otomatik calis
+  push:
+    branches: [main]
+
+  # main branch'e acilan her pull request'te otomatik calis
+  pull_request:
+    branches: [main]
+
+  # GitHub arayuzunden manuel olarak tetiklenebilmesini saglar
+  # Actions sekmesi -> workflow sec -> "Run workflow" butonu gorunur
+  workflow_dispatch:
+
+# Calisacak is tanimlari
+jobs:
+
+  # "test" adinda bir job olusturuyoruz (istedigimiz ismi verebiliriz)
+  test:
+
+    # GitHub'in saglayacagi temiz bir Ubuntu sunucusunda calis
+    runs-on: ubuntu-latest
+
+    # Job icindeki adimlar sirayla yurutulur
+    steps:
+
+      # Repo'daki kodlari sunucuya indirir
+      # Bu olmadan newman collection.json dosyasini bulamaz
+      - name: Kodu cek
+        uses: actions/checkout@v3
+
+      # Node.js kurar — Newman npm ile kuruldugu icin gerekli
+      - name: Node.js kur
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # Newman'i global olarak kurar
+      # -g = global, her yerden cagrilabilir hale getirir
+      - name: Newman kur
+        run: npm install -g newman
+
+      # Postman collection'ini Newman ile calistirir
+      # Dosya adi Postman'den export ettigin JSON ile BIREBIR ayni olmali
+      - name: Testleri calistir
+        run: |
+          newman run tests/powerpulse.postman_collection.json   
+      # -e tests/environment.json
